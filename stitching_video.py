@@ -2,6 +2,7 @@ import cv2
 import os
 import glob
 import numpy as np
+import shutil
 
 def extract_frames(video_path, output_dir="frames", step=10):
     os.makedirs(output_dir, exist_ok=True)
@@ -46,6 +47,10 @@ def stitch_frames(frames_dir="frames", output_file="minecraft_scan.jpg"):
         print(f"[OK] Panorama saved as '{output_file}'")
     else:
         print(f"[ERROR] Stitching failed with code {status}")
+
+    shutil.rmtree(frames_dir)
+    print(f"[OK] Deleted temporary folder '{frames_dir}'")
+
 
 if __name__ == "__main__":
     video_path = "Minecraft_stitch_test.mp4"  
